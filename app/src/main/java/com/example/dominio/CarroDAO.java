@@ -14,7 +14,16 @@ public class CarroDAO {
     public CarroDAO(){};
 
     public static void SalvarCarro (Carro carro){
-        dados.add(carro);
+        carro.setIdent_id((dados.size()+1)+"");
+        if(!dados.contains(carro)){
+            dados.add(carro);
+        }else{
+            dados.remove(carro);
+            dados.add(carro);
+            dados.set(
+                    dados.indexOf(carro),carro
+            );
+        }
     }
     public static void RemoverCarro (Carro carro){
         dados.remove(carro);

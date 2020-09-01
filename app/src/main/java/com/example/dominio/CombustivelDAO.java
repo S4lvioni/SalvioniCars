@@ -1,5 +1,7 @@
 package com.example.dominio;
 
+import com.example.appveiculo.Combustivel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +15,8 @@ public class CombustivelDAO {
     public static List getDados(final String carId){
         List<Combustiveis> filtrados = new ArrayList<>();
         for (Combustiveis combustivel: dado) {
-            if (combustivel.getCarro().getIdent_id().equals(carId)) {
-                filtrados.add(combustivel);
-            }
+           filtrados.add(combustivel);
         }
-        return filtrados;
+        return dado;
     }
 }

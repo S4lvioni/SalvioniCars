@@ -28,8 +28,11 @@ public class Combustivel extends AppCompatActivity {
     }
     public void SalvarGas(View view){
         Combustiveis combustivel = new Combustiveis();
+        System.out.println(combustivel);
         List<Carro> carros = CarroDAO.getDados();
+        System.out.println(carros);
         for (Carro carrinho: carros) {
+            System.out.println(carrinho.getIdent_id());
             if (carrinho.getIdent_id().equals(carId)) {
                 combustivel.setCarro(carrinho);
             }
@@ -37,6 +40,7 @@ public class Combustivel extends AppCompatActivity {
         combustivel.setLitros(Double.parseDouble(litros.getText().toString()));
         combustivel.setValor(Double.parseDouble(valor.getText().toString()));
         CombustivelDAO.Salvar(combustivel);
+        System.out.println(combustivel);
         super.onBackPressed();
     }
 }

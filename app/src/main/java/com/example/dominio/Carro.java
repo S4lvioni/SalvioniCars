@@ -3,7 +3,7 @@ package com.example.dominio;
 import android.content.Intent;
 
 import java.io.Serializable;
-import java.util.UUID;
+
 
 public class Carro {
     private String marca;
@@ -17,8 +17,8 @@ public class Carro {
         return ident_id;
     }
 
-    public Carro() {
-        this.ident_id = UUID.randomUUID().toString();
+    public void setIdent_id(String ident_id) {
+        this.ident_id = ident_id;
     }
 
     public String getMarca() {

@@ -51,11 +51,9 @@ public class CadastroVeiculo extends AppCompatActivity {
             modelo.setText(carrotempedit.getModelo());
             cor.setText(carrotempedit.getCor());
             placa.setText(carrotempedit.getPlaca());
-            ano.setText(carrotempedit.getAno());
+            ano.setText(String.valueOf(carrotempedit.getAno()));
         }
-
     }
-
         public void BotaoSalvarVeiculo(View view){
             if (carrotempedit != null) {
                 carrotempedit.setModelo(modelo.getText().toString());
@@ -73,8 +71,9 @@ public class CadastroVeiculo extends AppCompatActivity {
                 CarroDAO.SalvarCarro(carro);
                     System.out.println(CarroDAO.getDados());
                     Toast.makeText(this, "Cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
-                super.onBackPressed();
+
             }
+            super.onBackPressed();
     }
     public void BotaoVoltar(View view){
         super.onBackPressed();

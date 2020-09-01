@@ -33,6 +33,7 @@ public class ListaAbastecimentos extends AppCompatActivity {
     }
 
     public void AtualizarLista(){
+        System.out.println(carId);
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, CombustivelDAO.getDados(carId));
         ListarCombustiveis.setAdapter(adapter);
     }
