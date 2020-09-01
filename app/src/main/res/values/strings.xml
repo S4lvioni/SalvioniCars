@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">AppVeiculo</string>
+    <string name="TituloInicial">Salvioni Cars</string>
+    <string name="BotaoCadastrarVeiculo">Cadastrar Veículo</string>
+    <string name="BotaoListarVeiculo">Listar Veículo</string>
+    <string name="TituloTela2">Cadastro de Veículos</string>
+    <string name="HintMarca">Insira a marca aqui</string>
+    <string name="HintModelo">Insira o modelo aqui</string>
+    <string name="HintCor">Insira a cor aqui</string>
+    <string name="HintPlaca">Insira a placa aqui</string>
+    <string name="HintAno">Insira o ano aqui</string>
+    <string name="BotaoSalvar">Salvar</string>
+    <string name="TituloTela3">Veículos Cadastrados</string>
+    <string name="BotaoVoltar">Voltar</string>
+    <string name="BotaoEditar">Editar</string>
+    <string name="BotaoRemover">Remover</string>
+    <string name="TituloTelaMenu">Opções</string>
+    <string name="TituloTelaAbastecimento">Abastecimento</string>
+    <string name="HintValor">Valor</string>
+    <string name="HintLitros">Litros</string>
+    <string name="BotaoCombustivel">Cadastrar Abastecimento</string>
+    <string name="BotaoListaCombustivel">Listar Abastecimentos</string>
+    <string name="TituloTelaListaAbastecimento">Abastecimentos Cadastrados</string>
+</resources>
