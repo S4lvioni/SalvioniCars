@@ -31,9 +31,6 @@ public class Combustiveis {
 
     @Override
     public String toString() {
-        return "Combustiveis{" +
-                "litros=" + litros +
-                ", valor=" + valor +
-                '}';
+        return litros+" Litros no valor de:" +" "+valor;
     }
 }
