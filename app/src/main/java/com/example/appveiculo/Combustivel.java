@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.bd.Banco;
 import com.example.dominio.Carro;
-import com.example.dominio.CarroDAO;
+import com.example.dominio.CarroDAOBanco;
 import com.example.dominio.Combustiveis;
-import com.example.dominio.CombustivelDAO;
+import com.example.dominio.CombustiveisDAOBanco;
 
 import java.util.List;
 
@@ -17,6 +18,8 @@ public class Combustivel extends AppCompatActivity {
         private EditText litros;
         private EditText valor;
         private String carId;
+        private CarroDAOBanco carrodaobanco;
+        private Banco banco;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +31,10 @@ public class Combustivel extends AppCompatActivity {
     }
     public void SalvarGas(View view){
         Combustiveis combustivel = new Combustiveis();
+        banco = new Banco(this);
+        carrodaobanco = new CarroDAOBanco(banco.getWritableDatabase());
         System.out.println(combustivel);
-        List<Carro> carros = CarroDAO.getDados();
+        List<Carro> carros =carrodaobanco.getCarros();
         System.out.println(carros);
         for (Carro carrinho: carros) {
             System.out.println(carrinho.getIdent_id());
@@ -39,7 +44,7 @@ public class Combustivel extends AppCompatActivity {
         }
         combustivel.setLitros(Double.parseDouble(litros.getText().toString()));
         combustivel.setValor(Double.parseDouble(valor.getText().toString()));
-        CombustivelDAO.Salvar(combustivel);
+        CombustiveisDAOBanco.Salvar(combustivel);
         System.out.println(combustivel);
         super.onBackPressed();
     }

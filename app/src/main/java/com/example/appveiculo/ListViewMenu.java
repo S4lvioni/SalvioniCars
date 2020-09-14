@@ -5,13 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.bd.Banco;
 import com.example.dominio.Carro;
-import com.example.dominio.CarroDAO;
+import com.example.dominio.CarroDAOBanco;
 
 import java.util.List;
 
 public class ListViewMenu extends AppCompatActivity {
         private String idtemp;
+        private CarroDAOBanco carrodaobanco;
+        private Banco banco;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,14 +37,16 @@ public class ListViewMenu extends AppCompatActivity {
     }
     public void RemoverVeiculo(View view){
         Intent it8 = new Intent(ListViewMenu.this,MainActivity.class);
-        List<Carro>carrinhos = CarroDAO.getDados();
+        banco = new Banco(this);
+        carrodaobanco = new CarroDAOBanco(banco.getWritableDatabase());
+        List<Carro>carrinhos = carrodaobanco.getCarros();
         Carro controleremoto = null;
         for (Carro carro : carrinhos){
             if(carro.getIdent_id().equals(idtemp)) {
                 controleremoto = carro;
             }
         }
-        CarroDAO.RemoverCarro(controleremoto);
+        carrodaobanco.removerCarro(controleremoto);
         startActivity(it8);
     }
     public void ListarAbastecimentos(View view){

@@ -1,9 +1,5 @@
 package com.example.dominio;
 
-import android.content.Intent;
-
-import java.io.Serializable;
-
 
 public class Carro {
     private String marca;

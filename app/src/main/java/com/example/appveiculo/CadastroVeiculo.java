@@ -1,20 +1,17 @@
 package com.example.appveiculo;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.Toast;
 
-import com.example.appveiculo.ListarVeiculo;
+import com.example.bd.Banco;
 import com.example.dominio.Carro;
-import com.example.dominio.CarroDAO;
+import com.example.dominio.CarroDAOBanco;
 
 import java.util.List;
-import java.util.UUID;
 
 public class CadastroVeiculo extends AppCompatActivity {
     private String carId;
@@ -24,10 +21,14 @@ public class CadastroVeiculo extends AppCompatActivity {
     private EditText placa;
     private EditText ano;
     private Carro carrotempedit = null;
+    private CarroDAOBanco carrodaobanco;
+    private Banco banco;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        banco = new Banco(this);
+        carrodaobanco = new CarroDAOBanco(banco.getWritableDatabase());
         setContentView(R.layout.activity_cadastro_veiculo);
         marca = findViewById(R.id.InserirMarca);
         modelo = findViewById(R.id.InserirModelo);
@@ -39,7 +40,7 @@ public class CadastroVeiculo extends AppCompatActivity {
         Bundle bundle = it12.getExtras();
         if (bundle != null) {
             carId = (String)bundle.get("carId");
-            List<Carro> controle = CarroDAO.getDados();
+            List<Carro> controle = carrodaobanco.getCarros();
             for (Carro carro: controle) {
                 if(carro.getIdent_id().equals(carId)) {
                     carrotempedit = carro;
@@ -61,6 +62,7 @@ public class CadastroVeiculo extends AppCompatActivity {
                 carrotempedit.setCor(cor.getText().toString());
                 carrotempedit.setPlaca(placa.getText().toString());
                 carrotempedit.setAno(Integer.parseInt(ano.getText().toString()));
+                carrodaobanco.AtualizaCarro(carrotempedit);
             }else{
                 Carro carro = new Carro();
                 carro.setMarca(marca.getText().toString());
@@ -68,12 +70,11 @@ public class CadastroVeiculo extends AppCompatActivity {
                 carro.setCor(cor.getText().toString());
                 carro.setPlaca(placa.getText().toString());
                 carro.setAno(Integer.parseInt(ano.getText().toString()));
-                CarroDAO.SalvarCarro(carro);
-                    System.out.println(CarroDAO.getDados());
-                    Toast.makeText(this, "Cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
-
+                carrodaobanco.InserirCarro(carro);
+                Toast.makeText(this, "Cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
             }
-            super.onBackPressed();
+            Intent it = new Intent(CadastroVeiculo.this, MainActivity.class);
+            startActivity(it);
     }
     public void BotaoVoltar(View view){
         super.onBackPressed();

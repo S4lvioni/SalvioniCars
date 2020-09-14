@@ -1,20 +1,14 @@
 package com.example.appveiculo;
 
 import android.content.Intent;
-import android.os.Parcelable;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import com.example.appveiculo.ListarVeiculo;
 
-import com.example.dominio.Carro;
-import com.example.dominio.CarroDAO;
+import com.example.dominio.CarroDAOBanco;
 
 public class MainActivity extends AppCompatActivity {
-
+    private CarroDAOBanco teste;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
